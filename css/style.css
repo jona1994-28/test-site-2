@@ -1,0 +1,317 @@
+:root{              /* Valores o variables que podemos reutilizar */
+    --primario: #9C27B0;
+    --primarioOscuro: #891190;
+    --secundario: #FFCE00;
+    --secundarioOscuro: rgb (233,287,2);
+    --blanco: #FFF;
+    --negro: #000;
+
+    --fuentePrincipal: "Staatliches", cursive;
+}
+
+/* Aplicar un modelo de diseño de caja natural a todos los elementos, pero permitiendo que los componentes cambien. */
+html {          
+  box-sizing: border-box;       /* Especifica el comportamiento de las propiedades "Width" y "Heigth". Hace referencia a una caja de contenido */
+  font-size: 62.5%;   /* Esto nos permite agregar que 1rem sea igual a 10px */
+}
+
+*, *:before, *:after {          /* Selectores universales */   
+  box-sizing: inherit;
+}
+
+/* Globales */
+body{                   /* Cuerpo */
+    background-color: var(--primario);
+    font-size: 1.6rem;
+    line-height: 1.5;       /* Interlineado de 1.5, es decir, la base de la fuente */
+}
+
+p{                      /* Párrafos */
+  font-size: 1.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--blanco);  
+}
+
+a{                      /* Enlaces */
+  text-decoration: none; /* Se sacan todos los interlineados de la parte inferior. */
+}
+
+img{
+    width: 100%;
+}
+
+.contenedor{
+           max-width: 120rem; /* 120rem equivale a 1200px */    /* Restringue el ancho del contenido a un rango determinado */
+           margin: 0 auto;   /* Te centra el texto */  
+}
+
+h1, h2, h3{
+          text-align: center;
+          color: var(--secundario);
+          font-family: var(--fuentePrincipal);
+}
+
+/* Definición de cada uno de los tamaños de los h1 */
+h1{     
+   font-size: 4rem;
+}
+
+h2{
+    font-size: 3.2rem;
+}
+
+h3{
+    font-size: 2.4rem;
+}
+/* Termina lo global */
+
+/* HEADER */
+.header{
+    display: flex;
+    justify-content: center;  /* Centrar horizontalmente el contenido del header */
+}
+
+.header__logo{      /* No es significativo porque requiere del header para verse bonito */
+    margin: 3rem 0;
+}
+/* Termina el HEADER */
+
+/* Footer */
+.footer{
+        background-color: var(--primarioOscuro);
+        padding: 1rem 0;    /* arriba y abajo de 1rem; de izq a der de 0 */
+        margin-top: 2rem;
+}
+
+.footer__texto{
+        font-family: var(--fuentePrincipal); 
+        text-align: center;
+        font-size: 2.2rem;          /* Agranda el texto */
+}
+/* Termina el FOOTER */
+
+
+/* NAVEGACION */
+/* INTRODUCCIÓN A BEM: BLOQUE, ELEMENTO Y MODIFICADOR */
+.navegacion{                    
+    background-color: var(--primarioOscuro);
+    padding: 1rem 0;        /* Para agrandar la navegacion */
+    display: flex;          /* Se utiliza esto, para elementos de otro contenedor. */
+    justify-content: center;
+    /* gap: 2rem;  Separacion forma nueva */     /*Nos separa cada uno de los elementos. VERSION NUEVA*/ 
+}
+
+.navegacion__enlace{    
+    font-family: var(--fuentePrincipal);
+    color: var(--blanco);
+    font-size: 3rem;        /* Te agranda la letra */
+    margin-right: 2rem; /* Me agrega la separacion de los elementos. VERSION VIEJA */
+}
+
+.navegacion__enlace:last-of-type{       /* PSEUDOSELECTOR. VA A SELECCIONAR EL ÚLTIMO SI AGREGA MÁS ENLACES. */
+    margin-right: 0;
+}
+.navegacion__enlace--activo,            /* Para que el modificador me quede en amarillo */
+.navegacion__enlace:hover{
+    color: var(--secundario);
+}
+
+/* Grid */
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);       
+    column-gap: 2rem;       /* Separación de cada una de las columnas */    /* es lo mismo poner gap: 2rem */
+    row-gap:2rem;           /* Separación de cada una de las filas */
+}
+
+@media (min-width: 768px){
+    .grid{
+         grid-template-columns: repeat(3,1fr);
+    }
+}
+/* FIN GRID */
+
+/* Productos */
+.producto{
+        background-color: var(--primarioOscuro);
+        padding: 1rem;
+        border-radius: 20px;
+}
+.producto__imagen{
+    border-radius: 20px;
+}
+
+
+.producto__nombre{
+    font-size: 4rem;
+}
+
+.producto__precio{
+    font-size: 2.8rem;
+    color: var(--secundario);
+}
+
+.producto__nombre,
+.producto__precio{
+    font-family: var(--fuentePrincipal);
+    margin: 1px 0;
+    text-align: center;
+    line-height: 1.2;
+    
+}
+
+/* Gráficos */
+.grafico{
+    min-height: 30rem;   /* Establece la altura minima de un elemento */
+    background-repeat: no-repeat;       /* Para que no se repitan las imagenes */
+    background-size: cover;             /* Para que la imagen se estire y no quede recortada */
+    grid-column: 1 / 3;  /* SE MIRA DE IZQ A DER */
+    border-radius: 20px;
+}
+.grafico--camisas{
+    grid-row: 2 / 3 ;     /* SE MIRA DE ARRIBA HACIA ABAJO */
+    background-image: url(../img/grafico1.jpg);
+}
+
+.grafico--node{
+    background-image: url(../img/grafico2.jpg);
+    grid-row: 8 / 9;
+}
+
+@media (min-width: 768px){
+    .grafico--node{
+        grid-row: 5 / 6 ;     /* SE MIRA DE ARRIBA HACIA ABAJO */
+        grid-column: 2 / 4;  /* SE MIRA DE IZQ A DER */
+    }
+} 
+
+/* Nosotros */
+
+/* .nosotros {
+    display: flex;
+    flex-direction: row;
+}  */
+
+ /* .nosotros__contenido{
+    font-family: var(--fuentePrincipal);
+}  */
+
+.nosotros{
+    display:grid;   /* Convertimos el contenido en una grilla */
+}
+
+@media (min-width: 768px){
+    .nosotros{
+        grid-template-columns: repeat(2,1fr);     /* 1er lugar cantidad de columnas, 2do lugar cuanto medira cada columna */
+        column-gap: 2rem;
+    }    
+}
+
+.nosotros__imagen{
+    grid-row: 1 / 2; 
+              /* Para que ocupe toda la imagen */
+}
+
+@media (min-width: 768px){
+    .nosotros__imagen{
+        grid-column: 2 / 3;
+    }
+}
+
+/* Bloques */
+
+.bloques{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+@media (min-width: 768px){
+    .bloques{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.bloque{
+    text-align: center;
+}
+
+
+.bloque__titulo{
+    margin: 0;
+}
+
+/* Pagina del producto */
+
+@media (min-width: 768px){
+    .camisa{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+}
+
+.formulario{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.formulario__campo{     
+    border-color: var(--primarioOscuro);
+    border-width: 10px;                 
+    border-style: solid;
+    background-color: transparent;
+    color: var(--blanco);
+    font-size: 2rem;
+    font-family: Arial,helvetica, sans-serif;
+    padding:1rem;            
+    appearance: none;       /* Sirve para sacar la flecha hacia abajo */
+}
+
+.formulario__submit{           
+    background-color: var(--secundario);
+    border: none;
+    font-size: 2rem;
+    font-family: var(--fuentePrincipal);
+    padding: 2rem;
+    transition: background-color .3s ease;   /*Transition: Cual de las propiedades va a realizar, cuanto tiempo quieres que dure la animacion, tipo de animación */
+    grid-column: 1 / 3;
+}
+
+.formulario__submit:hover{
+    cursor:pointer;     /* Se ve de forma distinta */
+    background-color: var(--secundarioOscuro);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
